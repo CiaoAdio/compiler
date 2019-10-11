@@ -1,0 +1,18 @@
+int main(){
+	int a[10];
+	int i,j,temp;
+	i=0;
+	j=0;
+	temp=0;
+	while(i<9){
+		while(j<9-i){
+			if(a[j]>a[j+1]){
+				t=a[j+1];
+				a[j+1]=a[j];
+				a[j]=temp;
+			}
+		j++;
+		}
+	i++;
+	}
+}

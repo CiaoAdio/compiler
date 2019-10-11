@@ -1,0 +1,40 @@
+int s[250000];  /* s is an array */
+/*
+QuickSort
+*/
+void QuickSort(int s[], int p, int r) {
+	int q;
+	if (p < r) {
+		q = Partition(p, r);
+		QuickSort(s, p, q - 1);
+		QuickSort(s, q + 1, r);
+	}
+}
+/*
+Partition
+*/
+int Partition(int p, int r) {
+	int x, t;
+	int i, j;
+	x = s[r];
+	i = p - 1;
+	j = p;
+	while (j < r) {
+		if (s[j] < x) {
+			i = i + 1;
+			t = s[j];
+			s[j] = s[i];
+			s[i] = t;
+		}
+		j = j + 1;
+	}
+	t = s[r];
+	s[r] = s[i + 1];
+	s[i + 1] = t;
+	return i + 1;
+}
+int main(void) {
+	int n;
+	QuickSort(s, 0, n - 1);   /* initial call */
+	return 0;
+}

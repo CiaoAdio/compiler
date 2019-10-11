@@ -1,0 +1,12 @@
+/* multi
+-
+line */
+int main(void) {/* multi
+    -
+    line */int x; int y; 
+    int temp;
+    x = 72;
+    y = 18;
+    x = x/* */*/******/4;
+    return 0;
+}

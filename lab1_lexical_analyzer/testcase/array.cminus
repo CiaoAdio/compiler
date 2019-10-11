@@ -1,0 +1,12 @@
+void initArray (int len, int array[]) { 
+    int pos = 0;
+    while(pos<len){
+        array[pos] = 0;
+        pos = pos + 1;
+    }
+}
+int main(void) {
+    int emptyArray[10];
+    initArray(10, emptyArray);
+    return 0;
+}
