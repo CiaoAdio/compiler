@@ -40,11 +40,12 @@ NUMBER：<br />
 1、从测试样例中，选择一个样例，显示输出结果
 
 2、针对此案例，理解生成语法树的过程，找出函数调用的先后次序，并找出对应的产生式<br />
+选择样例lab2_call.cminus<br />
 `int main(void) {`<br />
 `	return a(b(10, c()));`<br />
 `}`<br />
     
-
+输出结果如下,<br />
 \>--+ program<br />
 |  >--+ declaration-list  `program → declaration-list`<br /> 
 |  |  >--+ declaration  `declaration-list → declaration`<br />
@@ -52,7 +53,7 @@ NUMBER：<br />
 |  |  |  |  >--+ type-specifier  `fun-declaration → type-specifier ID (params) compound-stmt`<br />
 |  |  |  |  |  >--* int  `type-specifier → int` <br />
 |  |  |  |  >--* main  `fun-declaration → type-specifier ID (params) compound-stmt`<br />
-|  |  |  |  >--* (  `fun-declaration → type-specifier ID (params) compound-stmt`(<br />
+|  |  |  |  >--* (  `fun-declaration → type-specifier ID (params) compound-stmt`<br />
 |  |  |  |  >--+ params  `fun-declaration → type-specifier ID (params) compound-stmt`<br />
 |  |  |  |  |  >--* void `params → void`<br />
 |  |  |  |  >--* ) `fun-declaration → type-specifier ID (params) compound-stmt`<br />
@@ -108,7 +109,7 @@ return-stmt`<br />
 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  >--* )  `call → ID ( args )`<br />
 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  >--* )  `call → ID ( args )`<br />
 |  |  |  |  |  |  |  |  |  |  |  |  |  |  >--* )  `call → ID ( args )`<br />
-|  |  |  |  |  |  |  |  >--* ;  <br />
+|  |  |  |  |  |  |  |  >--* ;  `return-stmt → return expression ;`<br />
 |  |  |  |  |  >--* }  `compound-stmt → { local-declarations statement-list }`<br />
 ### 实验难点
 
