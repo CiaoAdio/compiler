@@ -53,7 +53,7 @@ NUMBER：<br />
 -> `int yylex()`<br />
 -> `void printSyntaxTreeNode(FILE * fout, SyntaxTreeNode * node, int level)`<br />
 -> `void deleteSyntaxTree(SyntaxTree * tree)`<br />
--> `void deleteSyntaxTreeNode(SyntaxTreeNode * node, int recursive)`
+-> `void deleteSyntaxTreeNode(SyntaxTreeNode * node, int recursive)`<br />
 输出语法树如下,每个节点后的为其对应的产生式。<br />
 \>--+ program<br />
 |  >--+ declaration-list  `program → declaration-list`<br /> 
