@@ -37,15 +37,24 @@ NUMBER：<br />
 
 ### 实验结果
 
-1、从测试样例中，选择一个样例，显示输出结果
-
-2、针对此案例，理解生成语法树的过程，找出函数调用的先后次序，并找出对应的产生式<br />
 选择样例lab2_call.cminus<br />
 `int main(void) {`<br />
 `	return a(b(10, c()));`<br />
 `}`<br />
-    
-输出结果如下,<br />
+  
+执行命令`./build/test_syntax`<br />
+函数调用的先后次序：<br />
+`int main(int argc, char ** argv)`<br />
+-> `int syntax_main(int argc, char ** argv)`<br />
+-> `int getAllTestcase(char filename[][256])`<br />
+-> `void syntax(const char * input, const char * output)`<br />
+-> `SyntaxTree * newSyntaxTree()`<br /> 
+-> `int yyparse()`<br /> 
+-> `int yylex()`<br />
+-> `void printSyntaxTreeNode(FILE * fout, SyntaxTreeNode * node, int level)`<br />
+-> `void deleteSyntaxTree(SyntaxTree * tree)`<br />
+-> `void deleteSyntaxTreeNode(SyntaxTreeNode * node, int recursive)`
+输出语法树如下,每个节点后的为其对应的产生式。<br />
 \>--+ program<br />
 |  >--+ declaration-list  `program → declaration-list`<br /> 
 |  |  >--+ declaration  `declaration-list → declaration`<br />
@@ -113,10 +122,7 @@ return-stmt`<br />
 |  |  |  |  |  >--* }  `compound-stmt → { local-declarations statement-list }`<br />
 ### 实验难点
 
-实验中遇到哪些挑战
-
-如如何解决文法的移进规约冲突，git merge conflict如何解决，如何调试可能出现的段错误等，只要觉得在lab2上花了挺久时间的，都可以书写<br />
-1.段错误<br />
+段错误<br />
 error：segmentation fault(core dump)<br />
 解决方法：gdb定位出错位置。<br />
 输入命令：<br />
@@ -135,4 +141,5 @@ error：segmentation fault(core dump)<br />
 ### 实验反馈
 
 10.14号更新后的实验环境就很友好了，希望助教保持！
+
 
