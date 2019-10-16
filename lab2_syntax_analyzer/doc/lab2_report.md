@@ -46,32 +46,32 @@ NUMBER：<br />
     
 
 \>--+ program<br />
-|  >--+ declaration-list /`program → declaration-list`<br /> 
-|  |  >--+ declaration /`declaration-list → declaration`<br />
-|  |  |  >--+ fun-declaration /`declaration → fun-declaration`<br />
-|  |  |  |  >--+ type-specifier /`fun-declaration → type-specifier ID (params) compound-stmt`<br />
-|  |  |  |  |  >--* int /`type-specifier → int` <br />
-|  |  |  |  >--* main /`fun-declaration → type-specifier ID (params) compound-stmt`<br />
-|  |  |  |  >--* ( /`fun-declaration → type-specifier ID (params) compound-stmt`(<br />
-|  |  |  |  >--+ params /`fun-declaration → type-specifier ID (params) compound-stmt`<br />
-|  |  |  |  |  >--* void /`params → void`<br />
-|  |  |  |  >--* ) /`fun-declaration → type-specifier ID (params) compound-stmt`<br />
-|  |  |  |  >--+ compound-stmt /`fun-declaration → type-specifier ID (params) compound-stmt`<br />
-|  |  |  |  |  >--* { /`compound-stmt → { local-declarations statement-list }`<br />
-|  |  |  |  |  >--+ local-declarations /`compound-stmt → { local-declarations statement-list }`<br />
-|  |  |  |  |  |  >--* epsilon /`local-declarations → empty` <br />
-|  |  |  |  |  >--+ statement-list /`compound-stmt → { local-declarations statement-list }`<br />
-|  |  |  |  |  |  >--+ statement-list /`statement-list → statement-list statement`<br />
-|  |  |  |  |  |  |  >--* epsilon /`statement-list → empty`<br />
-|  |  |  |  |  |  >--+ statement /`statement-list → statement-list statement`<br />
-|  |  |  |  |  |  |  >--+ return-stmt /`statement → 
+|  >--+ declaration-list  `program → declaration-list`<br /> 
+|  |  >--+ declaration  `declaration-list → declaration`<br />
+|  |  |  >--+ fun-declaration  `declaration → fun-declaration`<br />
+|  |  |  |  >--+ type-specifier  `fun-declaration → type-specifier ID (params) compound-stmt`<br />
+|  |  |  |  |  >--* int  `type-specifier → int` <br />
+|  |  |  |  >--* main  `fun-declaration → type-specifier ID (params) compound-stmt`<br />
+|  |  |  |  >--* (  `fun-declaration → type-specifier ID (params) compound-stmt`(<br />
+|  |  |  |  >--+ params  `fun-declaration → type-specifier ID (params) compound-stmt`<br />
+|  |  |  |  |  >--* void `params → void`<br />
+|  |  |  |  >--* ) `fun-declaration → type-specifier ID (params) compound-stmt`<br />
+|  |  |  |  >--+ compound-stmt `fun-declaration → type-specifier ID (params) compound-stmt`<br />
+|  |  |  |  |  >--* { `compound-stmt → { local-declarations statement-list }`<br />
+|  |  |  |  |  >--+ local-declarations `compound-stmt → { local-declarations statement-list }`<br />
+|  |  |  |  |  |  >--* epsilon `local-declarations → empty` <br />
+|  |  |  |  |  >--+ statement-list `compound-stmt → { local-declarations statement-list }`<br />
+|  |  |  |  |  |  >--+ statement-list `statement-list → statement-list statement`<br />
+|  |  |  |  |  |  |  >--* epsilon `statement-list → empty`<br />
+|  |  |  |  |  |  >--+ statement `statement-list → statement-list statement`<br />
+|  |  |  |  |  |  |  >--+ return-stmt `statement → 
 return-stmt`<br />
-|  |  |  |  |  |  |  |  >--* return /`return-stmt → return expression ;`<br />
-|  |  |  |  |  |  |  |  >--+ expression /`return-stmt → return expression ;`<br />
-|  |  |  |  |  |  |  |  |  >--+ simple-expression /`expression → simple-expression`<br />
-|  |  |  |  |  |  |  |  |  |  >--+ additive-expression \`simple-expression → additive-expression`<br />
-|  |  |  |  |  |  |  |  |  |  |  >--+ term \`additive-expression → term`<br />
-|  |  |  |  |  |  |  |  |  |  |  |  >--+ factor \`term → factor`<br />
+|  |  |  |  |  |  |  |  >--* return `return-stmt → return expression ;`<br />
+|  |  |  |  |  |  |  |  >--+ expression `return-stmt → return expression ;`<br />
+|  |  |  |  |  |  |  |  |  >--+ simple-expression `expression → simple-expression`<br />
+|  |  |  |  |  |  |  |  |  |  >--+ additive-expression `simple-expression → additive-expression`<br />
+|  |  |  |  |  |  |  |  |  |  |  >--+ term `additive-expression → term`<br />
+|  |  |  |  |  |  |  |  |  |  |  |  >--+ factor `term → factor`<br />
 |  |  |  |  |  |  |  |  |  |  |  |  |  >--+ call `factor → call`<br />
 |  |  |  |  |  |  |  |  |  |  |  |  |  |  >--* a `call → ID ( args )`<br />
 |  |  |  |  |  |  |  |  |  |  |  |  |  |  >--* (  `call → ID ( args )`<br />
