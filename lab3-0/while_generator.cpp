@@ -27,45 +27,42 @@ int main() {
   IRBuilder<> builder(context);
   auto module = new Module("while", context);  // module name是什么无关紧要
 
-  // 函数参数类型的vector
-  std::vector<Type *> Ints(2, TYPE32);
+  std::vector<Type *> Ints(2, TYPE32);  // 函数参数类型的vector
+
    // main函数
   auto mainFun = Function::Create(FunctionType::get(TYPE32, false),
                                   GlobalValue::LinkageTypes::ExternalLinkage,
                                   "main",module);
-
   auto bb = BasicBlock::Create(context, "entry", mainFun);
-  // BasicBlock的名字在生成中无所谓,但是可以方便阅读
-  builder.SetInsertPoint(bb);
-
-  auto while_bodyBB = BasicBlock::Create(context, "while_bodyBB", mainFun);    // true分支
-  auto endloopBB = BasicBlock::Create(context, "endloopBB", mainFun);  // false分支
-  auto condBB = BasicBlock::Create(context, "condBB", mainFun);  // false分支
+  builder.SetInsertPoint(bb);  // 一个BB的开始
+  auto while_bodyBB = BasicBlock::Create(context, "while_bodyBB", mainFun);    // while_bodyBB分支
+  auto endloopBB = BasicBlock::Create(context, "endloopBB", mainFun);  // endloopBB分支
+  auto condBB = BasicBlock::Create(context, "condBB", mainFun);  // condBB分支
   
-  auto aAlloca = builder.CreateAlloca(TYPE32);    // 参数v的空间分配
-  auto iAlloca = builder.CreateAlloca(TYPE32);    // 参数v的空间分配
+  auto aAlloca = builder.CreateAlloca(TYPE32);   // 参数a的空间分配
+  auto iAlloca = builder.CreateAlloca(TYPE32);   // 参数i的空间分配
 
-  builder.CreateStore(CONST(10), aAlloca);  
-  builder.CreateStore(CONST(0), iAlloca);  
-  auto br = builder.CreateBr(condBB);
+  builder.CreateStore(CONST(10), aAlloca);  // store a
+  builder.CreateStore(CONST(0), iAlloca);  // store i
+  auto br = builder.CreateBr(condBB);  // 无条件BR
 
-  builder.SetInsertPoint(condBB);
-  auto iload = builder.CreateLoad(iAlloca); 
-  auto icmp = builder.CreateICmpSLT(iload, CONST(10));
+  builder.SetInsertPoint(condBB);  // condBB的开始
+  auto iload = builder.CreateLoad(iAlloca);  // load a
+  auto icmp = builder.CreateICmpSLT(iload, CONST(10));  // 条件判断
   br = builder.CreateCondBr(icmp, while_bodyBB, endloopBB);  // 条件BR
 
-  builder.SetInsertPoint(while_bodyBB);  // if true; 分支的开始需要SetInsertPoint设置
-  auto new_i = builder.CreateAdd(iload,CONST(1));  // SDIV - div with S flag
-  builder.CreateStore(new_i, iAlloca); 
-  iload = builder.CreateLoad(iAlloca);
-  auto aload = builder.CreateLoad(aAlloca); 
-  auto new_a = builder.CreateAdd(aload, iload);  
-  builder.CreateStore(new_a, aAlloca); 
-  br = builder.CreateBr(condBB);
+  builder.SetInsertPoint(while_bodyBB);  // while_bodyBB的开始
+  auto new_i = builder.CreateAdd(iload,CONST(1));  // i=i+1
+  builder.CreateStore(new_i, iAlloca);  // store i
+  iload = builder.CreateLoad(iAlloca);  // load i
+  auto aload = builder.CreateLoad(aAlloca);  // load a
+  auto new_a = builder.CreateAdd(aload, iload);  // a=a+i 
+  builder.CreateStore(new_a, aAlloca);  // store a
+  br = builder.CreateBr(condBB);  //无条件BR
 
-  builder.SetInsertPoint(endloopBB);  // if true; 分支的开始需要SetInsertPoint设置
-  auto res = builder.CreateLoad(aAlloca); 
-  builder.CreateRet(res);
+  builder.SetInsertPoint(endloopBB);  // endloopBB的开始
+  auto res = builder.CreateLoad(aAlloca);  // load res  
+  builder.CreateRet(res);  // return res
 
   module->print(outs(), nullptr);
   delete module;
