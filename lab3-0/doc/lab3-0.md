@@ -55,9 +55,9 @@ falseBB
 >falseBB:<br />
   ret i32 0<br /><br />
 对应关系<br />
->`falseBB:`<br />
+>//`falseBB:`<br />
 >builder.SetInsertPoint(falseBB);  // falseBB开始<br />
->`ret i32 0`<br />
+>//`ret i32 0`<br />
   builder.CreateRet(CONST(0));  // return 0<br />
 
 (3)while<br />
