@@ -1,4 +1,3 @@
-BasicBlock这个词本身是LLVM IR中的嘛(区别于basic block这一基本的概念),所以请描述.cpp片段和产生的.ll中基本块之间的关系
 ## lab3-0实验报告
 
 姓名：张陶竞
